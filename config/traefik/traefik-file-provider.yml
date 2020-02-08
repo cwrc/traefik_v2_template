@@ -1,0 +1,29 @@
+# File provider: dynamically loaded routers, middleware, and providers
+
+http:
+  middlewares:
+    secure:
+      headers:
+        sslredirect: true
+        forceSTSHeader: true
+        STSSeconds: 31536000
+        STSIncludeSubdomains: true
+        STSPreload: true
+        browserXssFilter: true
+        contentSecurityPolicy: "default-src https:"
+        contentTypeNosniff: true
+        framedeny: true
+        referrerPolicy: "strict-origin-when-cross-origin"
+        featurePolicy: "camera 'none'; microphone 'none'; payment 'none'; speaker 'none'; usb 'none'; vibrate 'none'; "
+        # Enable to prevent ssl redirect and STS Header enforcment
+        # ToDo: production disable to enfore redirect
+        isDevelopment: true
+
+
+tls:
+  options:
+    default:
+      #minVersion: VersionTLS13
+      minVersion: VersionTLS12
+      #sniStrict: true
+

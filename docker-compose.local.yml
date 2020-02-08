@@ -1,0 +1,34 @@
+version: '3.7'
+
+
+services:
+
+  traefik:
+    image: traefik:2.1.4
+    container_name: orlando-traefik-${CONTAINER_SHORT_ID}
+    networks:
+      orlando-internal:
+      orlando-external:
+    env_file:
+      - .env
+    ports:
+      - "80:80"
+      - "443:443"
+      #- "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/traefik/traefik-file-provider.yml:/etc/traefik/traefik-file-provider.yml #specified in .env
+      - ./config/traefik/acme.json:/acme.json #specified in .env
+
+      # Use Environment variables to pass in Traefik config; no traefik.yml required
+      # by providers
+      # Alternative to a static configureation /etc/traefik/traefik.yml"
+      # Pass in config via flags or environment variables
+      # https://docs.traefik.io/getting-started/configuration-overview
+      # Obsolete - "./config/traefik/traefik.local.yml:/etc/traefik/traefik.yml"
+ 
+
+networks:
+  orlando-internal:
+  orlando-external:
+
