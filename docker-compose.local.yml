@@ -18,7 +18,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/traefik/traefik-file-provider.yml:/etc/traefik/traefik-file-provider.yml #specified in .env
-      - ./config/traefik/acme.json:/acme.json #specified in .env
+      - ./config/traefik/letsencrypt:/etc/letsencrypt #specified in .env 
 
       # Use Environment variables to pass in Traefik config; no traefik.yml required
       # by providers
