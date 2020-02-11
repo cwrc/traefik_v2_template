@@ -4,7 +4,7 @@ http:
   middlewares:
     secure:
       headers:
-        sslredirect: true
+        sslRedirect: true
         forceSTSHeader: true
         stsSeconds: 31536000
         stsIncludeSubdomains: true
